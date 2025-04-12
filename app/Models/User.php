@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use Laravel\Sanctum\HasApiTokens;
@@ -52,6 +53,10 @@ class User extends Authenticatable
 
     public function products() {
         return $this->hasMany(Product::class);
+    }
+
+    public function orders() {
+        return $this->hasMany(Order::class);
     }
 
     public function categories() {

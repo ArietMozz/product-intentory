@@ -66,9 +66,9 @@ class ProductController extends Controller implements HasMiddleware
     {
         // Returns if not an admin
         if ($request->user()->type !== 'admin') {
-            return [
-                'message' => 'You do not have access to this action.'
-            ];
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 403);
         }
 
         $validated = $request->validate([
@@ -90,9 +90,9 @@ class ProductController extends Controller implements HasMiddleware
     {
         // Returns if not an admin
         if ($request->user()->type !== 'admin') {
-            return [
-                'message' => 'You do not have access to this action.'
-            ];
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 403);
         }
 
         $product->delete();

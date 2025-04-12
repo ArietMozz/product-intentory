@@ -21,10 +21,7 @@ class CategoryController extends Controller implements HasMiddleware
     public function index()
     {
         $categories = Category::with('products')->get();
-        
         return response()->json($categories);
-
-        // return Category::all();
     }
 
     /**
@@ -34,9 +31,9 @@ class CategoryController extends Controller implements HasMiddleware
     {
         // Returns if not an admin
         if ($request->user()->type !== 'admin') {
-            return [
-                'message' => 'You do not have access to this action.'
-            ];
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 403);
         }
 
         $validated = $request->validate([
@@ -65,9 +62,9 @@ class CategoryController extends Controller implements HasMiddleware
     {
         // Returns if not an admin
         if ($request->user()->type !== 'admin') {
-            return [
-                'message' => 'You do not have access to this action.'
-            ];
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 403);
         }
 
         $validated = $request->validate([
@@ -87,9 +84,9 @@ class CategoryController extends Controller implements HasMiddleware
     {
         // Returns if not an admin
         if ($request->user()->type !== 'admin') {
-            return [
-                'message' => 'You do not have access to this action.'
-            ];
+            return response()->json([
+                'message' => 'Unauthorized'
+            ], 403);
         }
 
         $category->delete();
